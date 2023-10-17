@@ -5,7 +5,7 @@ jobs:                           #job fields
     runs-on: ubuntu-latest      #running environment
     steps:                      #can start off multiple steps from here
       - name: Get Code          #can checkout repositry on to the running env so that our workflow can access it
-        uses: action/checkout@v3
+        uses: actions/checkout@v3
 
       - name: Install NodeJS
         uses: actions/setup-node@v3
@@ -14,4 +14,3 @@ jobs:                           #job fields
       - run: npm ci
       - run: npm test
 
-      
