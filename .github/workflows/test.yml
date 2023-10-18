@@ -1,12 +1,12 @@
-name: testProject               #worklfow name
-on: push                        #event
-jobs:                           #job fields
-  test:                         #my first job name 
-    runs-on: ubuntu-latest      #running environment
-    steps:                      #can start off multiple steps from here
-      - name: Get Code          #can checkout repositry on to the running env so that our workflow can access it
-        uses: actions/checkout@v3
-
+name: testProject                   #worklfow name
+on: push                            #event
+jobs:                               #job fields
+  test:                             #my first job name 
+    runs-on: ubuntu-latest          #running environment
+    steps:                          #can start off multiple steps from here
+      - name: Get Code              
+        uses: actions/checkout@v3   # an action that checks out your repository onto the runner, allowing you to run scripts or other actions against your code
+         
       - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
@@ -14,12 +14,11 @@ jobs:                           #job fields
       - run: npm ci
       - run: npm test
   deploy:
-    needs: test                 # deploy job will execute only once test job is successfull 
+    needs: test                     # deploy job will execute only once test job is successfull 
     runs-on: ubuntu-latest     
     steps:                      
       - name: Get Code          
         uses: actions/checkout@v3
-
       - name: Install NodeJS
         uses: actions/setup-node@v3
         with:
